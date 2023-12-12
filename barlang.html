@@ -38,19 +38,68 @@
             border: solid 1px black;
         }
 
+        .piros{
+            background-color: red;
+        }
+
     </style>
 
     <script>
 
+        let tomb1 = [];
+        let tomb2 = [];
+
         function feltolt(){
             for (let i = 0; i < 6; i++){
-                document.getElementById("elso").innerHTML += "<img src='icon" + Math.floor(Math.random()*8+1) + "n.png'>";
+                let v = Math.floor(Math.random()*8+1);
+                document.getElementById("elso").innerHTML += "<img src='icon" + v + "n.png'>";
+                tomb1.push(v);
             }
 
             for (let i = 1; i <= 8; i++){
-                document.getElementById("harmadik").innerHTML += "<img class='kicsi' src='icon" + i + "k.png'>";
+                document.getElementById("harmadik").innerHTML += "<img onclick='megjelenit(" + i + ");' class='kicsi' id='" + i + "' src='icon" + i + "k.png'>";
             }
 
+        }
+
+        let c = 0;
+        let rossz = false;
+
+        function megjelenit(id){
+            if (rossz == false && c < 6){
+                document.getElementById("masodik").setAttribute("style", "background-color: white;");
+            if (c != 6){
+                tomb2.push(id);
+                if (tomb1[c] != tomb2[c]){ 
+                    document.getElementById("masodik").innerHTML += "<img class='piros' src='icon" + id + "n.png'>";
+                    rossz = true;
+            }
+                else {
+                    document.getElementById("masodik").innerHTML += "<img src='icon" + id + "n.png'>";
+                    c++;
+                }
+            }
+            kesz();
+        } else {
+            document.getElementById("elso").innerHTML = "";
+            document.getElementById("masodik").innerHTML = "";
+            tomb1 = [];
+            tomb2 = [];
+            c = 0;
+            for (let i = 0; i < 6; i++){
+                let v = Math.floor(Math.random()*8+1);
+                document.getElementById("elso").innerHTML += "<img src='icon" + v + "n.png'>";
+                tomb1.push(v);
+                rossz = false;
+            }
+        }
+
+        }
+
+        function kesz(){
+            if (c == 6){
+                document.getElementById("masodik").setAttribute("style", "background-color: lightgreen;");
+            }
         }
 
     </script>
