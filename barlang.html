@@ -20,15 +20,43 @@
             border-radius: 20px;
             padding: 10px;
             margin-bottom: 10px;
+            text-align: center;
         }
 
         #masodik{
             height: 96px;
         }
 
+        .kicsi{
+            margin: 1px;
+            padding: 2px;
+            border: solid 1px lightgray;
+        }
+
+        .kicsi:hover{
+            background-color: greenyellow;
+            border: solid 1px black;
+        }
+
     </style>
+
+    <script>
+
+        function feltolt(){
+            for (let i = 0; i < 6; i++){
+                document.getElementById("elso").innerHTML += "<img src='icon" + Math.floor(Math.random()*8+1) + "n.png'>";
+            }
+
+            for (let i = 1; i <= 8; i++){
+                document.getElementById("harmadik").innerHTML += "<img class='kicsi' src='icon" + i + "k.png'>";
+            }
+
+        }
+
+    </script>
+
 </head>
-<body>
+<body onload="feltolt();">
 
     <div id="container">
 
